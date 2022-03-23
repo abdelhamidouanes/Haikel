@@ -1,0 +1,33 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content{
+    width: 500px;
+}
+button{
+    padding: 0px 10px;
+}
+input{
+    margin: 5px 0px;
+}
+.result{
+    background-color: grey;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.title, .elements, .remind-element{
+    margin: 20px 10px;
+}
+.elements{
+    display: flex;
+    justify-content: flex-start;
+}
+.elements p{
+    margin: 0px 5px;
+}
