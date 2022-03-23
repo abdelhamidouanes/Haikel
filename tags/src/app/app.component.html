@@ -11,7 +11,9 @@
       <input type="text" name="mainTitle" [(ngModel)]="mainTitle">
       <div class="form" [formGroup]="dataForm">
         <input type="text" name="masterTag" formControlName="masterTag" (keyup)="updateMasterTag()">
-        <input type="text" name="newTag" formControlName="newTag"><button>Add tag</button><button>Remove last tag</button>
+        <input type="text" name="newTag" formControlName="newTag">
+        <button (click)="addTag()">Add tag</button>
+        <button (click)="deleteLastTag()">Remove last tag</button>
       </div>
     </div>
   </div>

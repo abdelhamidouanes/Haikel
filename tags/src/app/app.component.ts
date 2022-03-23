@@ -54,4 +54,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.dataService.updateMasterTag(this.dataForm.value["masterTag"]);
   }
 
+  addTag(){
+    this.dataService.newTag(this.dataForm.value["newTag"]);
+  }
+
+  deleteLastTag(){
+    this.dataService.deleteLastTag();
+  }
+
 }

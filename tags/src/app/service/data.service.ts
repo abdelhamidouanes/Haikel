@@ -23,4 +23,14 @@ export class DataService {
     this.emitTags();
   }
 
+  newTag(value : string): void{
+    this.tags.push(value);
+    this.emitTags();
+  }
+
+  deleteLastTag(): void{
+    this.tags.pop();
+    this.emitTags();
+  }
+
 }
