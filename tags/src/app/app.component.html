@@ -3,13 +3,16 @@
     <div class="result">
       <div class="title">{{mainTitle}}</div>
       <div class="elements">
-        <p>element</p><p>element</p>
+        <p *ngFor="let tag of tags">{{tag}}</p>
       </div>
       <div class="remind-element">+5</div>
     </div>
-    <div class="form">
-      <input type="text" name="mainTitle" [(ngModel)]="mainTitle"><input type="text">
-      <input type="text"><button>Add tag</button><button>Remove last tag</button>
+    <div>
+      <input type="text" name="mainTitle" [(ngModel)]="mainTitle">
+      <div class="form" [formGroup]="dataForm">
+        <input type="text" name="masterTag" formControlName="masterTag" (keyup)="updateMasterTag()">
+        <input type="text" name="newTag" formControlName="newTag"><button>Add tag</button><button>Remove last tag</button>
+      </div>
     </div>
   </div>
 </div>
