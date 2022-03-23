@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   mainTitle : string;
 
-  tags : string[];
+  tags : any[];
   tagsSubscription : Subscription;
 
   dataForm !: FormGroup;
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit, OnDestroy {
   initDataForm(): void{
     this.dataForm = this.formBuilder.group(
       {
-        masterTag : this.tags[0],
+        masterTag : this.tags[0].value,
         newTag : ''
       }
     )
@@ -55,11 +55,17 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   addTag(){
-    this.dataService.newTag(this.dataForm.value["newTag"]);
+    if(this.dataForm.value["newTag"] != ''){
+      this.dataService.newTag(this.dataForm.value["newTag"]);
+    }
   }
 
   deleteLastTag(){
     this.dataService.deleteLastTag();
+  }
+
+  trackByMethod(index:number, tag:any): number {
+    return tag.id;
   }
 
 }

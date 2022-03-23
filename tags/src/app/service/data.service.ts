@@ -6,25 +6,34 @@ import { Subject } from 'rxjs';
 })
 export class DataService {
 
-  private tags : string[];
-  tagsSubject : Subject<string[]>;
+  private tags : any[];
+  tagsSubject : Subject<any[]>;
 
   constructor() { 
-    this.tags = ['tag1', 'tag2'];
-    this.tagsSubject = new Subject<string[]>();
+    this.tags = [
+      {
+        id : 0,
+        value : 'tag1'
+      },
+      {
+        id : 1,
+        value : 'tag2'
+      }
+    ];
+    this.tagsSubject = new Subject<any[]>();
   }
 
   emitTags(): void{
     this.tagsSubject.next(this.tags.slice());
   }
 
-  updateMasterTag(value : string): void{
-    this.tags[0] = value;
+  updateMasterTag(newValue : string): void{
+    this.tags[0].value = newValue;
     this.emitTags();
   }
 
-  newTag(value : string): void{
-    this.tags.push(value);
+  newTag(newTagValue : string): void{
+    this.tags.push({id : this.tags.length, value : newTagValue});
     this.emitTags();
   }
 
