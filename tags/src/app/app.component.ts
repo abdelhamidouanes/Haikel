@@ -11,17 +11,22 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
+  //Réference locale utiliser pour récupérer le largeur de la division
   @ViewChild('result') resultHtmlElement:any;
 
   title = 'tags';
 
+  //titrePripale gérer et mis à jour à l'aide ngModel
   mainTitle : string;
 
+  //liste des tags
   tags : any[];
   tagsSubscription : Subscription;
 
+  //FormGroup pour gérer le masterTag input value et le newTag input value
   dataForm !: FormGroup;
 
+  //varible pour calculer et afficher le nombre de tag non afficher
   nbrRemindElementsToDisplay : number;
 
   constructor(private dataService: DataService, private formBuilder : FormBuilder){
@@ -75,6 +80,8 @@ export class AppComponent implements OnInit, OnDestroy {
     return tag.id;
   }
 
+
+  //Méthode pour détecter le overflow et calculer le nombre de tag non afficher
   checkNbrRemindElementsTodisplay(): void{
     console.log(this.resultHtmlElement.nativeElement.scrollWidth)
     if(this.resultHtmlElement.nativeElement.offsetWidth<this.resultHtmlElement.nativeElement.scrollWidth){
