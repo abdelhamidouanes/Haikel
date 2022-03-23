@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from './service/data.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -10,6 +10,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
+
+  @ViewChild('result') resultHtmlElement:any;
+
   title = 'tags';
 
   mainTitle : string;
@@ -19,10 +22,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   dataForm !: FormGroup;
 
+  nbrRemindElementsToDisplay : number;
+
   constructor(private dataService: DataService, private formBuilder : FormBuilder){
     this.mainTitle = '';
     this.tags = [];
     this.tagsSubscription = new Subscription();
+    this.nbrRemindElementsToDisplay = 0;
   }
 
   
@@ -57,6 +63,7 @@ export class AppComponent implements OnInit, OnDestroy {
   addTag(){
     if(this.dataForm.value["newTag"] != ''){
       this.dataService.newTag(this.dataForm.value["newTag"]);
+      this.checkNbrRemindElementsTodisplay();
     }
   }
 
@@ -68,4 +75,11 @@ export class AppComponent implements OnInit, OnDestroy {
     return tag.id;
   }
 
+  checkNbrRemindElementsTodisplay(): void{
+    console.log(this.resultHtmlElement.nativeElement.scrollWidth)
+    if(this.resultHtmlElement.nativeElement.offsetWidth<this.resultHtmlElement.nativeElement.scrollWidth){
+      this.nbrRemindElementsToDisplay++;
+    }
+  }
+  
 }

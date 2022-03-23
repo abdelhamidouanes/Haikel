@@ -23,6 +23,7 @@ input{
 }
 .title, .elements, .remind-element{
     margin: 20px 10px;
+    white-space: pre;
 }
 .elements{
     display: flex;
